@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="player-container">
+    <div class="player-card">
+  <div class="album-art">
+  <div class="beat-ring" id="beat-ring"></div>
+ <div class="disk-container">
+  <img id="disk" src="images/playbutton.jpg" alt="Rotating CD">
+</div>
+</div>
+<div style="    position: absolute;
+    bottom: 10%;
+    width: 90%;">
+<div class="song-info">
+        <h2 id="song-title">No Song Selected</h2>
+      </div>
+
+    
+      <div class="controls">
+        <button id="prev" class="ctrl-btn">⏮️</button>
+        <button id="play" class="ctrl-btn play-btn">▶️</button>
+        <button id="next" class="ctrl-btn">⏭️</button>
+      </div>
+  
+
+      <div class="progress-container">
+        <span id="current-time">0:00</span>
+        <input type="range" id="progress" value="0" min="0" max="100" />
+        <span id="duration">0:00</span>
+      </div>
+    <div>
+<input type="file" id="file-input" accept="audio/*" multiple hidden>
+      <button class="choose-btn" id="choose-btn">🎵 Choose Songs</button>
+    
+    </div>
+  
+</div>
+      
+    
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
