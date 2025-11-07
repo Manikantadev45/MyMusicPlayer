@@ -14,7 +14,10 @@ const artistEl = document.getElementById("song-artist");
 const fileInput = document.getElementById("file-input");
 const chooseBtn = document.getElementById("choose-btn");
 const beatRing = document.getElementById("beat-ring");
-const disk = document.getElementById("disk"); // New rotating CD element
+const disk = document.getElementById("disk");
+const menuBtn = document.getElementById("menu-btn");
+const songList = document.getElementById("song-list");
+const songItems = document.getElementById("song-items");
 
 // ====== AUDIO CONTEXT FOR BEAT VISUALIZER ======
 let audioContext, analyser, source, dataArray;
@@ -33,6 +36,7 @@ fileInput.addEventListener("change", (event) => {
   if (songs.length > 0) {
     currentSongIndex = 0;
     loadSong(currentSongIndex);
+    updateSongList(); // ✅ ensure song list updates
   }
 });
 
@@ -55,11 +59,11 @@ function togglePlay() {
 
   if (isPlaying) {
     audio.pause();
-    playBtn.innerHTML = "▶️";
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
     disk.style.animationPlayState = "paused";
   } else {
     audio.play();
-    playBtn.innerHTML = "⏸️";
+    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
     disk.style.animationPlayState = "running";
     setupVisualizer();
 
@@ -105,8 +109,8 @@ progressBar.addEventListener("input", () => {
 // ====== AUTO NEXT ======
 audio.addEventListener("ended", () => {
   nextSong();
-  disk.style.animationPlayState = "paused"; // Stop rotation
-  playBtn.innerHTML = "▶️";
+  disk.style.animationPlayState = "paused";
+  playBtn.innerHTML = '<i class="fas fa-play"></i>';
   isPlaying = false;
 });
 
@@ -146,10 +150,38 @@ function visualizeBeat() {
   analyser.getByteFrequencyData(dataArray);
   const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
 
-  // Pulse scale and glow based on volume intensity
   const scale = 1 + avg / 250;
   const glow = Math.min(avg * 1.5, 255);
 
   beatRing.style.transform = `translate(-50%, -50%) scale(${scale})`;
-  beatRing.style.boxShadow = `0 0 ${glow / 2}px rgba(0, 225, 255, 0.8)`;
+  beatRing.style.boxShadow = `0 0 ${glow / 2}px rgba(255, 55, 0, 0.8)`;
 }
+
+// ====== MENU: UPDATE SONG LIST ======
+function updateSongList() {
+  songItems.innerHTML = "";
+  songs.forEach((song, index) => {
+    const li = document.createElement("li");
+    li.textContent = song.title;
+    li.classList.add("song-item");
+    li.addEventListener("click", () => {
+      currentSongIndex = index;
+      loadSong(index);
+      if (!isPlaying) togglePlay(); // start playback if paused
+      songList.classList.add("hidden");
+    });
+    songItems.appendChild(li);
+  });
+}
+
+// ====== MENU BUTTON TOGGLE ======
+menuBtn.addEventListener("click", () => {
+  songList.classList.toggle("hidden");
+});
+
+// ====== CLOSE MENU WHEN CLICKING OUTSIDE ======
+document.addEventListener("click", (e) => {
+  if (!songList.contains(e.target) && !menuBtn.contains(e.target)) {
+    songList.classList.add("hidden");
+  }
+});
