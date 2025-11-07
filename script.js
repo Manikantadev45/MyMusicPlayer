@@ -27,17 +27,23 @@ chooseBtn.addEventListener("click", () => fileInput.click());
 
 fileInput.addEventListener("change", (event) => {
   const files = Array.from(event.target.files);
-  songs = files.map(file => ({
+  const newSongs = files.map(file => ({
     title: file.name.replace(/\.[^/.]+$/, ""),
     artist: "Local File",
     src: URL.createObjectURL(file)
   }));
 
-  if (songs.length > 0) {
+  // 👇 Append to existing songs list instead of replacing it
+  songs.push(...newSongs);
+
+  // Load the first song if none playing
+  if (songs.length > 0 && !audio.src) {
     currentSongIndex = 0;
     loadSong(currentSongIndex);
-    updateSongList(); // ✅ ensure song list updates
   }
+
+  // Refresh song list UI
+  updateSongList();
 });
 
 // ====== LOAD SONG ======
