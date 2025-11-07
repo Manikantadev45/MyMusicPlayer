@@ -10,6 +10,13 @@
 <body>
   <div class="player-container">
     <div class="player-card">
+      <div class="file-section" style="    position: absolute;
+    top: 0px;
+    left: 15px;
+    z-index: 20;">
+        <input type="file" id="file-input" accept="audio/*" multiple hidden>
+        <button class="choose-btn" id="choose-btn">🎵 Choose Songs</button>
+      </div>
       <!-- Menu and Playlist -->
       <div class="menu-container">
         <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
@@ -50,10 +57,7 @@
       </div>
 
       <!-- Choose Song Button -->
-      <div class="file-section">
-        <input type="file" id="file-input" accept="audio/*" multiple hidden>
-        <button class="choose-btn" id="choose-btn">🎵 Choose Songs</button>
-      </div>
+      
     </div>
   </div>
 
