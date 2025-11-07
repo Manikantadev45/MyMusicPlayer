@@ -49,7 +49,7 @@ body {
 /* ===== ALBUM ART ===== */
 .album-art {
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -66,7 +66,7 @@ body {
 }
 
 .disk-container::after {
-  content: '';
+
   position: absolute;
   top:50%;
   left: 50%;
@@ -182,18 +182,20 @@ body {
 /* ===== CHOOSE SONG BUTTON ===== */
 .choose-btn {
   margin-top: 25px;
-  background: #222;
+   background: linear-gradient(145deg, #111, #1c1c1c);
+  color: #ccc;
+  
   border: 1px solid #333;
   padding: 10px 20px;
   border-radius: 30px;
-  color: #ff4400;
+
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .choose-btn:hover {
-  background: #ff4400;
-  color: #111;
+
+  color: #ff4500;
   transform: scale(1.05);
 }
 
@@ -228,15 +230,17 @@ body {
 /* ===== MENU & PLAYLIST ===== */
 .menu-container {
   position: absolute;
-  top: 15px;
+  top: 25px;
   right: 15px;
   z-index: 20;
 }
 
 .menu-btn {
-    color: rgb(245 65 0);
+  
     cursor: pointer;
     background: linear-gradient(145deg, #111, #1c1c1c);
+  color: #ccc;
+  
 
     border-width: 1px;
     border-style: solid;
@@ -246,6 +250,11 @@ body {
     border-radius: 30px;
     font-size: 20px;
     transition: 0.3s;
+}
+.menu-btn:hover {
+
+  color: #ff4500;
+  transform: scale(1.05);
 }
 
 .song-list {
