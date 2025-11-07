@@ -5,45 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Player</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="player-container">
     <div class="player-card">
-  <div class="album-art">
-  <div class="beat-ring" id="beat-ring"></div>
- <div class="disk-container">
-  <img id="disk" src="images/playbutton.jpg" alt="Rotating CD">
-</div>
-</div>
-<div style="    position: absolute;
-    bottom: 10%;
-    width: 90%;">
-<div class="song-info">
+      <!-- Menu and Playlist -->
+      <div class="menu-container">
+        <button id="menu-btn" class="menu-btn"><i class="fas fa-bars"></i></button>
+        <div id="song-list" class="song-list hidden">
+          <h4>Playlist</h4>
+          <ul id="song-items"></ul>
+        </div>
+      </div>
+
+      <!-- Album / Disk -->
+      <div class="album-art">
+        <div class="beat-ring" id="beat-ring">
+            <div class="disk-container">
+          <img id="disk" src="images/playbutton.jpg" alt="Rotating Disk">
+        </div>
+        </div>
+      
+      </div>
+
+      <!-- Song Info -->
+      <div class="song-info">
         <h2 id="song-title">No Song Selected</h2>
+        <h4 id="song-artist">Artist</h4>
       </div>
 
-    
-      <div class="controls">
-        <button id="prev" class="ctrl-btn">⏮️</button>
-        <button id="play" class="ctrl-btn play-btn">▶️</button>
-        <button id="next" class="ctrl-btn">⏭️</button>
-      </div>
-  
-
+      <!-- Progress Bar -->
       <div class="progress-container">
         <span id="current-time">0:00</span>
         <input type="range" id="progress" value="0" min="0" max="100" />
         <span id="duration">0:00</span>
       </div>
-    <div>
-<input type="file" id="file-input" accept="audio/*" multiple hidden>
-      <button class="choose-btn" id="choose-btn">🎵 Choose Songs</button>
-    
-    </div>
-  
-</div>
-      
-    
+
+      <!-- Controls -->
+      <div class="controls">
+        <button id="prev" class="ctrl-btn"><i class="fas fa-backward"></i></button>
+        <button id="play" class="ctrl-btn play-btn"><i class="fas fa-play"></i></button>
+        <button id="next" class="ctrl-btn"><i class="fas fa-forward"></i></button>
+      </div>
+
+      <!-- Choose Song Button -->
+      <div class="file-section">
+        <input type="file" id="file-input" accept="audio/*" multiple hidden>
+        <button class="choose-btn" id="choose-btn">🎵 Choose Songs</button>
+      </div>
     </div>
   </div>
 
